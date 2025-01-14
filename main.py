@@ -15,6 +15,10 @@ def main():
     print(f"Screen height: {SCREEN_HEIGHT}")
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
+    group_updatable = pygame.sprite.Group()
+    group_drawable = pygame.sprite.Group()
+    Player.containers = (group_updatable, group_drawable)
+
     x = SCREEN_WIDTH / 2
     y = SCREEN_HEIGHT / 2
     player = Player(x, y)
@@ -26,8 +30,15 @@ def main():
         
         screen.fill("black")
         
-        player.update(dt)
-        player.draw(screen)
+        #player.update(dt)
+        #player.draw(screen)
+        for o in group_updatable:
+            o.update(dt)
+
+        for o in group_drawable:
+            o.draw(screen)
+
+        
         
         
         pygame.display.flip()
