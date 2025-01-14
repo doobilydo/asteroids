@@ -3,6 +3,7 @@
 # throughout this file
 import pygame
 from constants import *
+from player import *
 
 
 def main():
@@ -20,8 +21,16 @@ def main():
                 return
         
         screen.fill("black")
+        
+        x = SCREEN_WIDTH / 2
+        y = SCREEN_HEIGHT / 2
+        player = Player(x, y)
+        player.draw(screen)
+        
         pygame.display.flip()
-        clock.tick(60)
+        dt = clock.tick(60)/1000 
+
+
 
 
 if __name__ == "__main__":
