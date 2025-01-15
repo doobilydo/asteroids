@@ -6,6 +6,7 @@ from constants import *
 from player import *
 from asteroid import *
 from asteroidfield import *
+import sys
 
 
 def main():
@@ -39,6 +40,11 @@ def main():
         
         for o in group_updatable:
             o.update(dt)
+
+        for asteroid in group_asteroids:
+            if player.collision(asteroid):
+                print("Game over!")
+                sys.exit()
 
         for o in group_drawable:
             o.draw(screen)
