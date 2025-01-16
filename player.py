@@ -11,6 +11,7 @@ class Player(CircleShape):
         
         self.rotation = 0
         self.shot_timer = 0
+        self.__bullets = []
     
     # in the player class
     def triangle(self):
@@ -40,6 +41,8 @@ class Player(CircleShape):
             self.move(dt * -1)
         if keys[pygame.K_SPACE]:
             shot = self.shoot()
+            if shot is not None:
+                self.__bullets.append(shot)
         
         self.shot_timer -= dt
     
@@ -55,4 +58,7 @@ class Player(CircleShape):
             return shot
         else:
             return None
-        
+    
+    # Return list of bullets.
+    def get_bullets(self):
+        return self.__bullets
