@@ -2,7 +2,7 @@
 # the open-source pygame library
 # throughout this file
 import pygame
-from constants import *
+import constants
 from player import *
 from asteroid import *
 from asteroidfield import *
@@ -30,8 +30,8 @@ def main():
 
     asteroid_field = AsteroidField()
 
-    x = SCREEN_WIDTH / 2
-    y = SCREEN_HEIGHT / 2
+    x = constants.SCREEN_WIDTH / 2
+    y = constants.SCREEN_HEIGHT / 2
     player = Player(x, y)
     
     while True:
@@ -50,7 +50,7 @@ def main():
                 sys.exit()
             for bullet in player.get_bullets():
                 if asteroid.collision(bullet):
-                    asteroid.kill()
+                    asteroid.split()
 
         for o in group_drawable:
             o.draw(screen)
